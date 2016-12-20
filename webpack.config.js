@@ -1,6 +1,7 @@
 const merge = require('webpack-merge');
 const path = require('path');
 const webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const ENV = require('./env');
 const PATHS = {
@@ -14,26 +15,74 @@ console.log("ENV:",  ENV);
 process.env.BABEL_ENV = ENV;
 
 const common = {
-	entry: PATHS.src,
+	devtool: 'eval-source-map',
+	entry: [
+		'webpack-dev-server/client?http://localhost:3000',
+		'webpack/hot/only-dev-server',
+		'react-hot-loader/patch',
+		path.join(PATHS.src, './index.tsx')
+	],
 	output: {
 		path: PATHS.build,
-		filename: 'bundle.js',
+		filename: '[name].js',
+		publicPath: '/'
+	},
+	resolve: {
+		extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
+	},
+	plugins: [
+		new HtmlWebpackPlugin({
+			template: 'src/index.tpl.html',
+			inject: 'body',
+			filename: 'index.html'
+		}),
+		new webpack.optimize.OccurenceOrderPlugin(),
+		new webpack.HotModuleReplacementPlugin(),
+		new webpack.NoErrorsPlugin(),
+		new webpack.DefinePlugin({
+			'process.env.NODE_ENV': JSON.stringify('development')
+		})
+	],
+	// tslint options
+	tslint: {
+		emitErrors: false,
+		failOnHint: false,
+		configuration: require('./.tslint.json')
 	},
 	module: {
+		preLoaders: [{
+			test: /\.tsx?$/,
+			exclude: /node_modules/,
+			loader: 'tslint'
+		}],
 		loaders: [
 			{
+				test: /\.tsx?$/,
+				loader: ['babel','ts'],
+				exclude:/node_modules/,
+			},
+			{
+				test: /\.json?$/,
+				loader: 'json'
+			},
+			{
 				test: /\.scss$/,
+				exclude: [/node_modules/], // sassLoader will include node_modules explicitly.
 				loaders: ['style', 'css?sourceMap',"sass?sourceMap"],
 				include: PATHS.src,
 			},
 			{
-				test: /\.jsx?$/,
-				loader: 'babel',
-				include: PATHS.src,
-				exclude:/node_modules/,
-				query: {
-					presets: ["es2015","react"]
-				}
+				test: /\.woff(2)?(\?[a-z0-9#=&.]+)?$/,
+				loader: 'url?limit=10000&mimetype=application/font-woff'
+			}, {
+				test: /\.(png|jpg)(\?[a-z0-9#=&.]+)?$/,
+				loader: 'url?limit=10000&name=img-[hash:6].[ext]'
+			}, {
+				test: /favicon\.ico$/,
+				loader: 'url?limit=1&name=[name].[ext]'
+			}, {
+				test: /\.(ttf|eot|svg)(\?[a-z0-9#=&.]+)?$/,
+				loader: 'file'
 			}
 		]
 	},
@@ -42,31 +91,5 @@ const common = {
 	}
 };
 
-if (ENV === 'development') {
-	module.exports = merge(common, {
-		devServer: {
-			contentBase: PATHS.build,
 
-			// Enable history API fallback so HTML5 History API based
-			// routing works. This is a good default that will come
-			// in handy in more complicated setups.
-			historyApiFallback: true,
-			hot: true,
-			inline: true,
-			progress: true,
-
-			// Display only errors to reduce the amount of output.
-			stats: 'errors-only',
-
-			// Parse host and port from env so this is easy to customize.
-			host: process.env.HOST,
-			port: process.env.PORT,
-		},
-		plugins: [
-			new webpack.HotModuleReplacementPlugin(),
-		],
-	});
-} else {
-	// config can be added here for minifying / etc
-	module.exports = merge(common, {});
-}
+module.exports = common;
