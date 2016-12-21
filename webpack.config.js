@@ -10,6 +10,7 @@ const PATHS = {
 };
 
 console.log("ENV:",  ENV);
+console.log("PATHS:",   PATHS);
 
 
 process.env.BABEL_ENV = ENV;
@@ -48,7 +49,7 @@ const common = {
 			{
 				test: /\.jsx?$/,
 				loaders: ['babel'],
-				exclude: [/node_modules/,/later/],
+				exclude: /node_modules/
 			},
 			{
 				test: /\.json?$/,

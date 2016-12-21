@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Component } from "react";
+import MainNav from "./MainNav";
 
 export default class Panel extends React.Component {
 
@@ -7,7 +8,7 @@ export default class Panel extends React.Component {
 		title: React.PropTypes.string.isRequired
 	};*/
 
-	constructor(props:any, context?:any){
+	constructor(props, context){
 		super(props);
 	}
 
@@ -19,7 +20,7 @@ export default class Panel extends React.Component {
 		return (
 				<div className="panel panel-left panel-reveal">
 					<div className="content-block">
-						<p>Left panel content goes here</p>
+						<MainNav />
 					</div>
 				</div>
 		);

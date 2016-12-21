@@ -4,18 +4,12 @@ import * as ReactDOM from "react-dom";
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import Panel from "./Panel";
 
-export default class BoycottApp extends React.Component<any> {
+export default class BoycottApp extends React.Component {
 
-	constructor(props: any, context?: any ) {
+	constructor(props, context) {
 		super(props);
 		console.log("BoycottApp", this.props);
-	}
-
-	getInitialState() {
-		//return StepStore.getState();
-		return {
-			animationName: 'push',
-		};
+		this.state = {};
 	}
 
 	componentDidMount() {
@@ -27,15 +21,13 @@ export default class BoycottApp extends React.Component<any> {
 	}
 
 	render() {
-		const { animationName } = this.state;
+
 		return (
 				<div>
-					<CSSTransitionGroup transitionName={animationName}
-					                    transitionEnterTimeout={300} transitionLeaveTimeout={300}>
+					<Panel/>
+					{this.props.children}
 						{/* Remove the below component and its children */}
 						{/* and replace with your own */}
-
-					</CSSTransitionGroup>
 				</div>
 		);
 	}

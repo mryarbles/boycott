@@ -3,7 +3,7 @@ import { Component } from "react";
 
 export default class AboutPage extends React.Component {
 
-	constructor(props: any, context?: any ) {
+	constructor(props, context) {
 		super(props);
 
 	}
@@ -17,7 +17,6 @@ export default class AboutPage extends React.Component {
 	}
 
 	render() {
-		const { animationName } = this.state;
 		return (
 				<div>
 					About

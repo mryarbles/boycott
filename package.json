@@ -21,6 +21,7 @@
     "babel-preset-react": "^6.3.13",
     "classnames": "^2.2.3",
     "file-loader": "^0.9.0",
+    "framework7": "^1.5.2",
     "react": "^15.3.0",
     "react-addons-css-transition-group": "^15.3.0",
     "react-dom": "^15.3.0",
