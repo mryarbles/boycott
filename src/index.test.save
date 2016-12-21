@@ -1,0 +1,10 @@
+/// <reference path="index.d.ts" />
+
+import expect from 'expect';
+import * as mocah from 'mocha';
+
+describe('empty', () => {
+	it('should work', () => {
+		expect(true).toEqual(true);
+	})
+});

@@ -52,14 +52,14 @@ const common = {
 	module: {
 		preLoaders: [{
 			test: /\.tsx?$/,
-			exclude: /node_modules/,
+			exclude: [/node_modules/,/later/],
 			loader: 'tslint'
 		}],
 		loaders: [
 			{
 				test: /\.tsx?$/,
-				loader: ['babel','ts'],
-				exclude:/node_modules/,
+				loaders: ['babel','ts'],
+				exclude: [/node_modules/,/later/],
 			},
 			{
 				test: /\.json?$/,

@@ -1,12 +1,13 @@
 import * as React from "react";
+import { Component } from "react";
 
-export class Panel extends React.Component {
+export default class Panel extends React.Component {
 
 	/*static propTypes = {
 		title: React.PropTypes.string.isRequired
 	};*/
 
-	constructor(props){
+	constructor(props:any, context?:any){
 		super(props);
 	}
 

@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"outDir": "./dist/",
+		"outDir": "./www/",
 		"rootDir": "src",
 		"sourceRoot": "src",
 		"sourceMap": true,
@@ -12,6 +12,6 @@
 	},
 	"exclude": [
 		"node_modules",
-		"dist"
+		"www"
 	]
 }
