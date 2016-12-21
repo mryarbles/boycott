@@ -20,7 +20,7 @@ const common = {
 		'webpack-dev-server/client?http://localhost:3000',
 		'webpack/hot/only-dev-server',
 		'react-hot-loader/patch',
-		path.join(PATHS.src, './index.tsx')
+		path.join(PATHS.src, './index.jsx')
 	],
 	output: {
 		path: PATHS.build,
@@ -28,7 +28,7 @@ const common = {
 		publicPath: '/'
 	},
 	resolve: {
-		extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
+		extensions: ["", ".webpack.js", ".web.js", ".jsx", ".js"]
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
@@ -43,22 +43,11 @@ const common = {
 			'process.env.NODE_ENV': JSON.stringify('development')
 		})
 	],
-	// tslint options
-	tslint: {
-		emitErrors: false,
-		failOnHint: false,
-		configuration: require('./.tslint.json')
-	},
 	module: {
-		preLoaders: [{
-			test: /\.tsx?$/,
-			exclude: [/node_modules/,/later/],
-			loader: 'tslint'
-		}],
 		loaders: [
 			{
-				test: /\.tsx?$/,
-				loaders: ['babel','ts'],
+				test: /\.jsx?$/,
+				loaders: ['babel'],
 				exclude: [/node_modules/,/later/],
 			},
 			{
