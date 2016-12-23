@@ -4,19 +4,31 @@ import { Component } from "react";
 import ReactDOM from 'react-dom';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import { AppContainer } from 'react-hot-loader';
-const framework7 = require("framework7");
+import injectTapEventPlugin from "react-tap-event-plugin";
 
-//const frameworkCss = require('!style!css!framework7/dist/css/framework7.material.css');
-import './css/styles.scss';
 
 import BoycottApp from './components/BoycottApp';
 import HomePage from './components/HomePage';
 import  AboutPage from './components/AboutPage';
 import FactsPage  from './components/FactsPage';
 
+import './css/styles.scss';
+
+
+
+// Initialize app
+const frameworkApp = new Framework7();
+
 const rootElement = document.getElementById('root');
 
 console.log("Boycott Trump");
+
+// ignore click events if they are immediately preceeded by a click event.
+injectTapEventPlugin({
+	shouldRejectClick: function (lastTouchEventTimestamp, clickEventTimestamp) {
+		return true;
+	}
+});
 
 const jsx =
 <Router history={browserHistory}>

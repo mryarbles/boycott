@@ -13,6 +13,14 @@ export default class PanelNav extends React.Component {
 
 	}
 
+	handleClick(e) {
+		console.log("PanelNav.handleClick");
+	}
+
+	handleTouchTap(e){
+		console.log("PanelNav.handleTouchTap");
+	}
+
 	render() {
 		return (
 				<div className="panel panel-left panel-reveal">

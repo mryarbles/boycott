@@ -15,11 +15,11 @@ export default class HeaderNav extends React.Component {
 
 	render() {
 		return (
-				<div class="navbar">
-					<div class="navbar-inner">
-						<div class="center sliding">Boycott Trump&lsquo;s States</div>
-						<div class="right">
-							<a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
+				<div className="navbar">
+					<div className="navbar-inner">
+						<div className="center sliding">Boycott Trump&lsquo;s States</div>
+						<div className="right">
+							<a href="#" className="link icon-only open-panel"><i className="icon icon-bars"></i></a>
 						</div>
 					</div>
 				</div>

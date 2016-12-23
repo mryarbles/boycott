@@ -5,6 +5,8 @@ import CSSTransitionGroup from 'react-addons-css-transition-group';
 import Panel from "./Panel";
 import HeaderNav from "./HeaderNav";
 
+const framework7 = require("framework7");
+
 export default class BoycottApp extends React.Component {
 
 	constructor(props, context) {
@@ -14,7 +16,10 @@ export default class BoycottApp extends React.Component {
 	}
 
 	componentDidMount() {
+		let myApp = new Framework7();
+		let $$ = Dom7;
 
+		let mainView = myApp.addView('.view-main', { dynamicNavbar: true });
 	}
 
 	componentWillUnmount() {
@@ -26,11 +31,11 @@ export default class BoycottApp extends React.Component {
 		return (
 				<div>
 					<Panel/>
-					<div class="view view-main">
-						<HeaderNav />
-						<div class="pages navbar-through toolbar-through">
-							<div class="page">
-								<div class="page-content">
+					<div className="view view-main">
+						<div className="pages">
+							<div data-page="index" className="page navbar-fixed toolbar-fixed">
+								<HeaderNav />
+								<div className="page-content">
 									{this.props.children}
 								</div>
 							</div>
