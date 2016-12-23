@@ -2,12 +2,6 @@ import * as React from "react";
 import { Component } from "react";
 
 export default class FactsPage extends React.Component {
-	getInitialState() {
-		//return StepStore.getState();
-		return {
-			animationName: 'push',
-		};
-	}
 
 	constructor(props) {
 		super(props);
@@ -23,7 +17,6 @@ export default class FactsPage extends React.Component {
 	}
 
 	render() {
-		const { animationName } = this.state;
 		return (
 				<div>
 					Facts

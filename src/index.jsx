@@ -4,11 +4,10 @@ import { Component } from "react";
 import ReactDOM from 'react-dom';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import { AppContainer } from 'react-hot-loader';
-import './css/styles.scss';
-
 const framework7 = require("framework7");
 
-
+//const frameworkCss = require('!style!css!framework7/dist/css/framework7.material.css');
+import './css/styles.scss';
 
 import BoycottApp from './components/BoycottApp';
 import HomePage from './components/HomePage';
@@ -16,6 +15,8 @@ import  AboutPage from './components/AboutPage';
 import FactsPage  from './components/FactsPage';
 
 const rootElement = document.getElementById('root');
+
+console.log("Boycott Trump");
 
 const jsx =
 <Router history={browserHistory}>
