@@ -2,7 +2,7 @@ import * as React from "react";
 import { Component } from "react";
 import { Link } from "react-router";
 
-export default class MainNav extends React.Component {
+export default class PanelNav extends React.Component {
 
 	constructor(props, context){
 		super(props);

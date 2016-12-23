@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Component } from "react";
-import MainNav from "./MainNav";
+import PanelNav from "./PanelNav";
 
 export default class Panel extends React.Component {
 
@@ -20,7 +20,7 @@ export default class Panel extends React.Component {
 		return (
 				<div className="panel panel-left panel-reveal">
 					<div className="content-block">
-						<MainNav />
+						<PanelNav />
 					</div>
 				</div>
 		);

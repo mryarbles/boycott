@@ -3,6 +3,7 @@ import { Component } from "react";
 import * as ReactDOM from "react-dom";
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import Panel from "./Panel";
+import HeaderNav from "./HeaderNav";
 
 export default class BoycottApp extends React.Component {
 
@@ -25,9 +26,16 @@ export default class BoycottApp extends React.Component {
 		return (
 				<div>
 					<Panel/>
-					{this.props.children}
-						{/* Remove the below component and its children */}
-						{/* and replace with your own */}
+					<div class="view view-main">
+						<HeaderNav />
+						<div class="pages navbar-through toolbar-through">
+							<div class="page">
+								<div class="page-content">
+									{this.props.children}
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 		);
 	}
