@@ -44,42 +44,57 @@ if(ENV === 'production') {
 /**
  * LOADERS
  */
-let loadersArr = [
-	{
+
+let loadersConfig = {
+	js:{
 		test: /\.jsx?$/,
 		loaders: ['babel'],
 		exclude: /node_modules/
 	},
-	{
+	json: {
 		test: /\.json?$/,
 		loader: 'json'
 	},
-	{
-		test: /\.css$/,
-		loader: ExtractTextPlugin.extract("css?sourceMap"),
-		include: [/node_modules/],
+	sass: {
+		dev: {
+			test: /\.scss$/,
+			exclude: [/node_modules/], // sassLoader will include node_modules explicitly.
+			loader: 'style!css!sass?modules&localIdentName=[name]---[local]---[hash:base64:5]'
+		},
+		prod:{
+			test: /\.scss$/,
+			exclude: [/node_modules/], // sassLoader will include node_modules explicitly.
+			// we extract the styles into their own .css file instead of having
+			// them inside the js.
+			loader: ExtractTextPlugin.extract('style', 'css!postcss!sass')
+		}
 	},
-	{
-		test: /\.scss$/,
-		exclude: [/node_modules/], // sassLoader will include node_modules explicitly.
-		loader: ExtractTextPlugin.extract("style", "css?sourceMap=1&importLoaders=1","sass?sourceMap"),
-		include: [path.join(__dirname, './src/css'),/node_modules/],
-	},
-	{
+	woff: {
 		test: /\.woff(2)?(\?[a-z0-9#=&.]+)?$/,
 		loader: 'url?limit=10000&mimetype=application/font-woff'
-	}, {
+	},
+	img:  {
 		test: /\.(png|jpg)(\?[a-z0-9#=&.]+)?$/,
 		loader: 'url?limit=10000&name=img-[hash:6].[ext]'
-	}, {
+	},
+	favicon:{
 		test: /favicon\.ico$/,
 		loader: 'url?limit=1&name=[name].[ext]'
-	}, {
+	},
+	fonts:{
 		test: /\.(ttf|eot|svg)(\?[a-z0-9#=&.]+)?$/,
 		loader: 'file'
 	}
-];
 
+};
+
+let loadersArr;
+
+if(ENV === 'production') {
+	loadersArr = [loadersConfig.js, loadersConfig.json, loadersConfig.sass.prod, loadersConfig.woff, loadersConfig.img,loadersConfig.fonts, loadersConfig.favicon];
+} else {
+	loadersArr = [loadersConfig.js, loadersConfig.json, loadersConfig.sass.dev, loadersConfig.woff, loadersConfig.img,loadersConfig.fonts, loadersConfig.favicon];
+}
 
 /**
  * CONFIGURATION
@@ -106,6 +121,9 @@ const common = {
 		loaders: loadersArr
 	},
 	watch: true,
+	postcss: [
+		require('autoprefixer')
+	],
 	sassLoader: {
 		includePaths: [path.resolve(__dirname, "./node_modules")]
 	}

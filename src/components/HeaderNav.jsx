@@ -15,7 +15,7 @@ export default class HeaderNav extends React.Component {
 
 	render() {
 		return (
-				<div className="navbar">
+				<div className="navbar bt-header-nav">
 					<div className="navbar-inner">
 						<div className="center sliding">Boycott Trump&lsquo;s States</div>
 						<div className="right">
