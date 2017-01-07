@@ -2,8 +2,8 @@ import { combineReducers } from 'redux'
 
 import quotesReducer from "./QuotesReducer";
 
-const app = combineReducers({
+const rootReducer = combineReducers({
 	quotesReducer
 });
 
-export default app;
+export default rootReducer;

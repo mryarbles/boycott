@@ -2,3 +2,22 @@
 body {
 	background: $color-red;
 }
+
+a {
+	@include transition();
+	color: $color-red;
+	font-weight: bold;
+	&:hover {
+		color: $color-black;
+	}
+}
+
+a.on-red{
+	color: $color-white;
+}
+
+ul.no-bullets {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}

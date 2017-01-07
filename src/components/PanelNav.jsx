@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Component } from "react";
-import { Link } from "react-router";
+import  NavLink  from "./NavLink";
 
 export default class PanelNav extends React.Component {
 
@@ -14,7 +14,7 @@ export default class PanelNav extends React.Component {
 	}
 
 	handleClick(e) {
-		console.log("PanelNav.handleClick");
+		console.log("PanelNav.handleClick", e);
 	}
 
 	handleTouchTap(e){
@@ -23,12 +23,13 @@ export default class PanelNav extends React.Component {
 
 	render() {
 		return (
-				<div className="panel panel-left panel-reveal">
+				<div className="panel panel-left panel-reveal panel-nav">
 					<div className="content-block">
-						<ul>
-							<li><Link to="/">Home</Link></li>
-							<li><Link to="/about">About</Link></li>
-							<li><Link to="/facts">Facts</Link></li>
+						<ul className="no-bullets">
+							<li><NavLink to="/" >Home</NavLink></li>
+							<li><NavLink to="about" >About</NavLink></li>
+							<li><NavLink to="facts" >Facts</NavLink></li>
+							<li><NavLink to="who-said-it" >Who Said It?</NavLink></li>
 						</ul>
 					</div>
 				</div>

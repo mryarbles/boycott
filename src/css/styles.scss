@@ -1,6 +1,7 @@
 @import "~framework7/dist/css/framework7.material.css";
 @import "./vars/_module";
+@import "./mixins/_module";
 @import "./elements";
 @import "./app";
 @import "./header-nav";
-
+@import "./panel-nav";

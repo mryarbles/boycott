@@ -22,15 +22,17 @@
     "classnames": "^2.2.3",
     "file-loader": "^0.9.0",
     "framework7": "^1.5.2",
+    "lodash": "^4.17.4",
     "react": "^15.3.0",
     "react-addons-css-transition-group": "^15.3.0",
     "react-dom": "^15.3.0",
     "react-hot-loader": "^3.0.0-beta.2",
     "react-redux": "^4.4.6",
     "react-router": "^2.4.0",
-    "react-router-redux": "^4.0.4",
+    "react-router-redux": "^4.0.7",
     "react-tappable": "^0.8.3",
-    "redux": "^3.5.2"
+    "redux": "^3.5.2",
+    "redux-thunk": "^2.1.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.6.0",
