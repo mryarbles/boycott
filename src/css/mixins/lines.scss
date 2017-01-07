@@ -1,0 +1,8 @@
+/**
+  * Creates underline effect
+  * Used in cases where <hr> is not ideal
+  */
+
+@mixin grey-underline() {
+  border-bottom: 1px solid $color-gray-lightest;
+}

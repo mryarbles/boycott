@@ -1,0 +1,144 @@
+
+// Need this since older Safari needs prefix in front of the property
+// Use default quote for value2 to make it optional
+@mixin flex-properties ($property, $value1) {
+  #{$property}: $value1;
+  -webkit-#{$property}: $value1; 
+  -ms-#{$property}: $value1;
+}
+
+@mixin flex-prefixes {
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;      /* TWEENER - IE 10 */
+  display: -webkit-flex;     /* NEW - Chrome */
+  display: flex;
+}
+
+@mixin _flex {
+  @include flex-prefixes();
+  @include flex-properties(align-items, center);
+  
+
+  & > * {
+    // Let the flexbox deal with spacing.
+    margin: 0;
+  }
+}
+
+@mixin flex-center {
+  @include flex-prefixes();
+  @include flex-properties(justify-content, center);
+  @include flex-properties(flex-direction, column);
+  @include flex-properties(align-items, center);
+  
+}
+
+@mixin flex-row {
+  @include _flex();
+  @include flex-properties(flex-direction, row);
+  
+  @include flex-properties(justify-content, space-between);
+
+  &:before, &:after {
+    // Remove any clearfix that would mess with spacing.
+    content: none;
+  }
+}
+
+@mixin flex-column {
+  @include _flex();
+  @include flex-properties(flex-direction, column);
+  @include flex-properties(justify-content, center);
+}
+
+.flexbox {
+  @include flex-prefixes();
+}
+
+.flex-center {
+  @include flex-center();
+}
+
+.flex-vertical-center {
+  @include flex-column();
+  @include flex-properties(align-items, baseline);
+}
+
+.flex-vertical-bottom {
+  @include flex-column();
+  @include flex-properties(align-items, bottom);
+}
+
+.flex-row {
+  @include flex-row();
+}
+
+.flex-column {
+  @include flex-column();
+}
+
+.tablet-flex-row {
+  @include tablet {
+    @include flex-row();
+  }
+}
+
+.tablet-flex-column {
+    @include tablet {
+    @include flex-column();
+  }
+}
+
+.tablet-justify-space-between {
+  @include tablet {
+    @include flex-properties(justify-content, space-between);
+  }
+}
+
+.justify-start {
+  @include flex-properties(justify-content, flex-start);
+}
+
+.justify-end {
+   @include flex-properties(justify-content, flex-end);
+}
+
+.justify-space-between {
+  @include flex-properties(justify-content, space-between);
+}
+
+.justify-space-around {
+  @include flex-properties(justify-content, space-around); 
+}
+
+.justify-center {
+  @include flex-properties(justify-content, center);  
+}
+
+.align-start {
+  @include flex-properties(align-items, flex-start); 
+}
+
+.align-center {
+  @include flex-properties(align-items, center); 
+}
+
+.flex-spacer, .flex-grow {
+  @include flex-properties(flex-grow, 1); 
+}
+
+.flex-wrap {
+  @include flex-properties(flex-wrap, wrap);
+}
+
+//cancels inherited wrapping in safari
+.flex-nowrap {
+  @include flex-properties(flex-wrap, nowrap);
+}
+
+//the following class is used on empty spacer divs to solve the problem
+//of the last line of multi-line wrapped flex items not being left-justified
+.flex-empty-spacer {
+  height: 0;
+}

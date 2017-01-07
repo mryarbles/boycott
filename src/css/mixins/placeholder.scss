@@ -1,0 +1,17 @@
+@mixin placeholder-color ($clr) {
+  &::-webkit-input-placeholder {
+    color: $clr;
+  }
+
+  &:-moz-placeholder { /* Firefox 18- */
+    color: $clr;
+  }
+
+  &::-moz-placeholder {  /* Firefox 19+ */
+    color: $clr;
+  }
+
+  &:-ms-input-placeholder {
+    color: $clr;
+  }
+}

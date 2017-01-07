@@ -1,0 +1,12 @@
+@mixin invalid-file-uploader(){
+  border: 3px solid $color-red;
+
+  p.copy {
+    color:$color-aa-gray-very-dark;
+  }
+
+  .btn-upload {
+    color:$color-aa-gray-very-dark;
+    border-color: $color-aa-gray-very-dark;
+  }
+}

@@ -1,0 +1,16 @@
+$default-position: 50%;
+$move-left: $default-position + 15%;
+$move-right: $default-position - 15%;
+
+@mixin default ($position: $default-position) {
+  opacity: 1;
+  left: $position;
+};
+@mixin fadeLeft ($position: $default-position) {
+  opacity: 0;
+  left: $position + 15%;
+}
+@mixin fadeRight ($position: $default-position) {
+  opacity: 0;
+  left: $position - 15%;
+}

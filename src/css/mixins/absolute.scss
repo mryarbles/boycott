@@ -1,0 +1,42 @@
+@mixin translate-prefixes ($x, $y) {
+  -webkit-transform: translate($x, $y); 
+  -ms-transform: translate($x, $y);
+  transform: translate($x, $y); 
+}
+
+@mixin absolute-center () {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include translate-prefixes(-50%, -50%);
+}
+
+.absolute-center {
+  @include absolute-center();
+}
+
+@mixin absolute-stretch () {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.absolute-stretch {
+  @include absolute-stretch();
+}
+
+// TODO: weird
+.absolute-anchor {
+  position: relative;
+}
+
+.absolute-center-tablet {
+  @include tablet {
+    width:100%;
+    @include absolute-center();
+  }
+}
+
+

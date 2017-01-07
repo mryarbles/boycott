@@ -1,0 +1,97 @@
+/*
+ * Since we're using a typeface that has different fonts
+ * for each weight, use these mixins instead of font-weight.
+ */
+@mixin font-family-and-fallbacks($font) {
+  font-family: $font, 'Helvetica' ,'Arial', sans-serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+@mixin body-font() {
+  @include font-family-and-fallbacks('FFMarkWeb');
+}
+
+.body-font {
+  @include body-font();
+}
+
+@mixin display-font() {
+  @include font-family-and-fallbacks('Druk Web');
+}
+
+.display-font {
+  @include display-font();
+}
+
+@mixin headline-font() {
+  @include font-family-and-fallbacks('FFMarkWebBold');
+}
+
+@mixin bold-font() {
+  @include headline-font();
+}
+
+.headline-font {
+  @include headline-font();
+}
+
+/**
+deprecate
+*/
+@mixin button-font() {
+  @include font-family-and-fallbacks('FFMarkWeb');
+}
+
+.button-font {
+  @include button-font();
+}
+
+/**
+deprecate
+*/
+@mixin light-headline-font() {
+  @include font-family-and-fallbacks('FFMarkWeb');
+}
+/**
+deprecate
+*/
+.light-headline-font {
+  @include light-headline-font();
+}
+
+/**
+deprecate
+*/
+@mixin light-font() {
+  @include font-family-and-fallbacks('FFMarkWeb');
+}
+
+/**
+deprecate
+*/
+.light-font {
+  @include light-font();
+}
+
+/*
+ * Converters from px to relative sizes. Generally, we're using rem,
+ * and using em for specialy situations where elements should scale to their
+ * surroundings.
+ */
+@function to-relative($size, $type) {
+  @return ($size / $font-size-body) * $type;
+}
+
+@function to-rem($size) {
+  @return to-relative($size, 1rem);
+}
+
+@function to-em($size) {
+  @return to-relative($size, 1em);
+}
+
+// The awkward h5.5 size
+@mixin small-font-size {
+  font-size: to-rem(14px);
+}

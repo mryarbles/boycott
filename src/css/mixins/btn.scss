@@ -1,0 +1,140 @@
+/*
+ * Button Type Mixins
+ */
+@mixin fill-button($background-color, $text-color, $no-hover: false) {
+  color: $text-color;
+  border-color: transparent;
+  background: $background-color;
+
+  &:active {
+    color: $background-color;
+    background-color: $text-color;
+    border-color: $background-color;
+    box-shadow:none;
+  }
+
+  @if not($no-hover) {
+    &:hover {
+      color: $background-color;
+      background-color: $text-color;
+      border-color: $background-color;
+    }
+  }
+}
+
+@mixin nav-button ($background-color, $text-color, $hover-background, $no-hover: false) {
+  color: $text-color;
+  border-color: transparent;
+  background: $background-color;
+
+  &:active {
+    color:$text-color;
+    background-color: $hover-background;
+    border-color: $background-color;
+    box-shadow:none;
+  }
+  @if not($no-hover) {
+    &:hover {
+      color: $text-color;
+      background-color: $hover-background;
+      border-color: $hover-background;
+    }
+  }
+}
+
+@mixin outline-button($color, $hover-color: false) {
+  color: $color;
+  border-color: $color;
+  background: transparent;
+
+  @if $hover-color != false {
+    &:hover {
+      @include fill-button($color, $hover-color, true);
+    }
+  }
+}
+
+@mixin arrow-button($color, $hover-color: false) {
+  @include outline-button($color, $hover-color);
+
+  &:after {
+    font-family: FontAwesome;
+    content: "\f178";
+  }
+}
+
+@mixin chevron-button($color, $hover-color: false) {
+  @include outline-button($color, $hover-color);
+
+  // There's a buttonFlexWrapperClass directive to make this
+  // div exist, since Safari & Firefox don't
+  .button-flex-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &:after {
+      font-family: FontAwesome;
+      content: "\f054";
+    }
+  }
+}
+
+@mixin underline($color) {
+  // Text underline
+  border-bottom: 2px solid $color;
+}
+
+@mixin underline-button($color) {
+  color: $color;
+  border-color: transparent;
+  background: transparent;
+
+  // There's no border, so no padding on the side
+  padding-left: 0;
+  padding-right:0;
+
+  span {
+    @include underline(transparent);
+
+    &:hover {
+      border-bottom-color: $color;
+    }
+  }
+}
+
+@mixin icon-button($color) {
+  color: $color;
+  border-color: transparent;
+  background: transparent;
+
+  // There's no border, so no padding on the side
+  padding-left: 0;
+
+  .fa {
+    // Big icon
+    font-size: 1.5em;
+  }
+
+  .text {
+    @include underline(transparent);
+  }
+
+  .fa, .text {
+    // This override makes vertical alignment work, for some reason.
+    vertical-align: middle;
+  }
+
+  &:hover {
+    .text {
+      border-bottom-color: $color;
+    }
+  }
+}
+
+@mixin transparent-button($color) {
+  background: transparent;
+  border-color: transparent;
+
+  color: $color;
+}
